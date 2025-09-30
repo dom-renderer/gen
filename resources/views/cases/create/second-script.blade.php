@@ -10,11 +10,13 @@ $(document).ready(function () {
         $(parent).find('.contact_person_middle_name').attr('name', `contact_person_middle_name[${index}]`).val(null);
         $(parent).find('.contact_person_last_name').attr('name', `contact_person_last_name[${index}]`).val(null);
         $(parent).find('.contact_person_email').attr('name', `contact_person_email[${index}]`).val(null);
-        $(parent).find('.contact_person_phone_number_dial_code').attr('name', `contact_person_phone_number_dial_code[${index}]`).val(null);
-        $(parent).find('.contact_person_phone_number').attr('name', `contact_person_phone_number[${index}]`).val(null);
+        $(parent).find('.contact_person_phone_number').remove();
 
         $(parent).find('label.error').remove();
-        $(parent).find('div.iti').remove();
+        $(parent).find('div.iti').html(`
+            <input type="hidden" class="contact_person_phone_number_dial_code sa1edcp1_pn" id="contact_person_phone_number_dial_code_${index}" name="contact_person_phone_number_dial_code[${index}]" value="">
+            <input type="tel" class="form-control contact_person_phone_number sa1edcp1_dc" name="contact_person_phone_number[${index}]" id="contact_person_phone_number" value="">
+        `);
 
         $(parent).insertAfter('#s1ss1contper > div.row:last');
 

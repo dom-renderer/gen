@@ -334,11 +334,11 @@
     $(document).ready(function() {
         $(document).on('change', '.entity-type-select', function() {
             const entityType = $(this).val();
-            const container = $(this).closest('.row').find('.col-md-9');
+            const container = $(this).closest('.row').find('.col-md-12');
             const individualFields = container.find('.individual-name-fields');
             const entityField = container.find('.entity-name-field');
             
-            if (entityType === 'Individual') {
+            if (entityType.toLowerCase() === 'individual') {
                 individualFields.show();
                 entityField.hide();
             } else {
@@ -398,7 +398,15 @@
         $(document).on('click', '.add-policyholder', function() {
             policyholderCount++;
             const newItem = createPolicyholderItem(policyholderCount);
+
             $('.policyholders-container').append(newItem);
+
+            $('.policyholders-container').find('.entity-type-select').last().select2({
+                theme: 'classic',
+                width: '100%',
+                placeholder: 'Select entity type'
+            });
+
             updateRemoveButtons('.policyholder-item');
         });
 
@@ -493,6 +501,13 @@
             insuredLifeCount++;
             const newItem = createInsuredLifeItem(insuredLifeCount);
             $('.insured-lives-container').append(newItem);
+
+            $('.insured-lives-container').find('.entity-type-select').last().select2({
+                theme: 'classic',
+                width: '100%',
+                placeholder: 'Select entity type'
+            });
+
             updateRemoveButtons('.insured-life-item');
         });
 
@@ -529,6 +544,13 @@
             beneficiaryCount++;
             const newItem = createBeneficiaryItem(beneficiaryCount);
             $('.beneficiaries-container').append(newItem);
+
+            $('.beneficiaries-container').find('.entity-type-select').last().select2({
+                theme: 'classic',
+                width: '100%',
+                placeholder: 'Select entity type'
+            });
+
             updateRemoveButtons('.beneficiary-item');
         });
 
@@ -564,6 +586,13 @@
             advisorCount++;
             const newItem = createAdvisorItem(advisorCount);
             $('.advisors-container').append(newItem);
+
+            $('.advisors-container').find('.entity-type-select').last().select2({
+                theme: 'classic',
+                width: '100%',
+                placeholder: 'Select entity type'
+            });
+            
             updateRemoveButtons('.advisor-item');
         });
 
@@ -599,6 +628,13 @@
             idfCount++;
             const newItem = createIdfItem(idfCount);
             $('.idfs-container').append(newItem);
+
+            $('.idfs-container').find('.entity-type-select').last().select2({
+                theme: 'classic',
+                width: '100%',
+                placeholder: 'Select entity type'
+            });
+
             updateRemoveButtons('.idf-item');
         });
 
@@ -634,6 +670,13 @@
             idfManagerCount++;
             const newItem = createIdfManagerItem(idfManagerCount);
             $('.idf-managers-container').append(newItem);
+
+            $('.idf-managers-container').find('.entity-type-select').last().select2({
+                theme: 'classic',
+                width: '100%',
+                placeholder: 'Select entity type'
+            });
+
             updateRemoveButtons('.idf-manager-item');
         });
 
@@ -669,6 +712,13 @@
             custodianCount++;
             const newItem = createCustodianItem(custodianCount);
             $('.custodians-container').append(newItem);
+
+            $('.custodians-container').find('.entity-type-select').last().select2({
+                theme: 'classic',
+                width: '100%',
+                placeholder: 'Select entity type'
+            });
+
             updateRemoveButtons('.custodian-item');
         });
 
@@ -716,18 +766,18 @@
                         <button type="button" class="btn btn-sm btn-danger remove-policyholder">Remove</button>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-3">
                             <label class="form-label">Entity Type</label>
                             <select class="form-control entity-type-select" name="policy_holder[${count-1}][type]">
                                 <option value="">Select Type</option>
-                                <option value="Individual">Individual</option>
-                                <option value="Corporate">Corporate</option>
-                                <option value="Trust">Trust</option>
-                                <option value="Foundation">Foundation</option>
+                                <option value="individual">Individual</option>
+                                <option value="corporate">Corporate</option>
+                                <option value="trust">Trust</option>
+                                <option value="foundation">Foundation</option>
                             </select>
                         </div>
-                        <div class="col-md-9">
-                            <div class="individual-name-fields" style="display: none;">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-9">
+                            <div class="individual-name-fields" style="display: none;" >
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="form-label">First Name</label>
@@ -743,7 +793,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="entity-name-field" style="display: none;">
+                            <div class="entity-name-field"  >
                                 <label class="form-label">Name</label>
                                 <input type="text" class="form-control" name="policy_holder[${count-1}][name]">
                             </div>
@@ -767,18 +817,18 @@
                         <button type="button" class="btn btn-sm btn-danger remove-insured-life">Remove</button>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-3">
                             <label class="form-label">Entity Type</label>
                             <select class="form-control entity-type-select" name="insured_life[${count-1}][entity_type]">
                                 <option value="">Select Type</option>
-                                <option value="Individual">Individual</option>
-                                <option value="Corporate">Corporate</option>
-                                <option value="Trust">Trust</option>
-                                <option value="Foundation">Foundation</option>
+                                <option value="individual">Individual</option>
+                                <option value="corporate">Corporate</option>
+                                <option value="trust">Trust</option>
+                                <option value="foundation">Foundation</option>
                             </select>
                         </div>
-                        <div class="col-md-9">
-                            <div class="individual-name-fields" style="display: none;">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-9">
+                            <div class="individual-name-fields" style="display: none;" >
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="form-label">First Name</label>
@@ -794,7 +844,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="entity-name-field" style="display: none;">
+                            <div class="entity-name-field"  >
                                 <label class="form-label">Name</label>
                                 <input type="text" class="form-control" name="insured_life[${count-1}][name]">
                             </div>
@@ -818,18 +868,18 @@
                         <button type="button" class="btn btn-sm btn-danger remove-beneficiary">Remove</button>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-3">
                             <label class="form-label">Entity Type</label>
                             <select class="form-control entity-type-select" name="beneficiary[${count-1}][entity_type]">
                                 <option value="">Select Type</option>
-                                <option value="Individual">Individual</option>
-                                <option value="Corporate">Corporate</option>
-                                <option value="Trust">Trust</option>
-                                <option value="Foundation">Foundation</option>
+                                <option value="individual">Individual</option>
+                                <option value="corporate">Corporate</option>
+                                <option value="trust">Trust</option>
+                                <option value="foundation">Foundation</option>
                             </select>
                         </div>
-                        <div class="col-md-9">
-                            <div class="individual-name-fields" style="display: none;">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-9">
+                            <div class="individual-name-fields" style="display: none;" >
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="form-label">First Name</label>
@@ -845,7 +895,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="entity-name-field" style="display: none;">
+                            <div class="entity-name-field"  >
                                 <label class="form-label">Name</label>
                                 <input type="text" class="form-control" name="beneficiary[${count-1}][name]">
                             </div>
@@ -869,7 +919,7 @@
                         <button type="button" class="btn btn-sm btn-danger remove-advisor">Remove</button>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-3">
                             <label class="form-label">Entity Type</label>
                             <select class="form-control entity-type-select" name="advisor[${count-1}][entity_type]">
                                 <option value="">Select Type</option>
@@ -879,8 +929,8 @@
                                 <option value="Foundation">Foundation</option>
                             </select>
                         </div>
-                        <div class="col-md-9">
-                            <div class="individual-name-fields" style="display: none;">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-9">
+                            <div class="individual-name-fields" style="display: none;" >
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="form-label">First Name</label>
@@ -896,7 +946,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="entity-name-field" style="display: none;">
+                            <div class="entity-name-field"  >
                                 <label class="form-label">Name</label>
                                 <input type="text" class="form-control" name="advisor[${count-1}][name]">
                             </div>
@@ -920,7 +970,7 @@
                         <button type="button" class="btn btn-sm btn-danger remove-idf">Remove</button>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-3">
                             <label class="form-label">Entity Type</label>
                             <select class="form-control entity-type-select" name="idf[${count-1}][entity_type]">
                                 <option value="">Select Type</option>
@@ -930,8 +980,8 @@
                                 <option value="Foundation">Foundation</option>
                             </select>
                         </div>
-                        <div class="col-md-9">
-                            <div class="individual-name-fields" style="display: none;">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-9">
+                            <div class="individual-name-fields" style="display: none;" >
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="form-label">First Name</label>
@@ -947,7 +997,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="entity-name-field" style="display: none;">
+                            <div class="entity-name-field"  >
                                 <label class="form-label">Name</label>
                                 <input type="text" class="form-control" name="idf[${count-1}][name]">
                             </div>
@@ -971,7 +1021,7 @@
                         <button type="button" class="btn btn-sm btn-danger remove-idf-manager">Remove</button>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-3">
                             <label class="form-label">Entity Type</label>
                             <select class="form-control entity-type-select" name="idf_manager[${count-1}][entity_type]">
                                 <option value="">Select Type</option>
@@ -981,8 +1031,8 @@
                                 <option value="Foundation">Foundation</option>
                             </select>
                         </div>
-                        <div class="col-md-9">
-                            <div class="individual-name-fields" style="display: none;">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-9">
+                            <div class="individual-name-fields" style="display: none;" >
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="form-label">First Name</label>
@@ -998,7 +1048,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="entity-name-field" style="display: none;">
+                            <div class="entity-name-field"  >
                                 <label class="form-label">Name</label>
                                 <input type="text" class="form-control" name="idf_manager[${count-1}][name]">
                             </div>
@@ -1022,7 +1072,7 @@
                         <button type="button" class="btn btn-sm btn-danger remove-custodian">Remove</button>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-3">
                             <label class="form-label">Entity Type</label>
                             <select class="form-control entity-type-select" name="custodian[${count-1}][entity_type]">
                                 <option value="">Select Type</option>
@@ -1032,8 +1082,8 @@
                                 <option value="Foundation">Foundation</option>
                             </select>
                         </div>
-                        <div class="col-md-9">
-                            <div class="individual-name-fields" style="display: none;">
+                        <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-9">
+                            <div class="individual-name-fields" style="display: none;" >
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="form-label">First Name</label>
@@ -1049,7 +1099,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="entity-name-field" style="display: none;">
+                            <div class="entity-name-field">
                                 <label class="form-label">Name</label>
                                 <input type="text" class="form-control" name="custodian[${count-1}][name]">
                             </div>

@@ -2701,7 +2701,6 @@ function deleteCaseFileNote(id) {
 
 $(document).ready(function () {
     $('.entity-type-select').select2({
-            allowClear: true,
             placeholder: 'Select entity type',
             theme: 'classic',
             width: '100%',

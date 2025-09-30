@@ -207,15 +207,15 @@
                                 <label class="form-label mb-3">Entity Type</label>
                                 <select class="form-control entity-type-select" name="advisor[{{ $loop->iteration }}][entity_type]">
                                     <option value="">Select Type</option>
-                                    <option value="individual" {{ $kr['type'] == 'individual' ? 'selected' : '' }}>Individual</option>
-                                    <option value="corporate" {{ $kr['type'] == 'corporate' ? 'selected' : '' }}>Corporate</option>
-                                    <option value="trust" {{ $kr['type'] == 'trust' ? 'selected' : '' }}>Trust</option>
-                                    <option value="foundation" {{ $kr['type'] == 'foundation' ? 'selected' : '' }}>Foundation</option>
+                                    <option value="Individual" {{ $kr['type'] == 'Individual' ? 'selected' : '' }}>Individual</option>
+                                    <option value="Corporate" {{ $kr['type'] == 'Corporate' ? 'selected' : '' }}>Corporate</option>
+                                    <option value="Trust" {{ $kr['type'] == 'Trust' ? 'selected' : '' }}>Trust</option>
+                                    <option value="Foundation" {{ $kr['type'] == 'Foundation' ? 'selected' : '' }}>Foundation</option>
                                 </select>
                             </div>
                             <div class="col-md-12 col-xl-6 col-lg-6 col-xxl-9">
                                 <input type="hidden" name="advisor[{{ $loop->iteration }}][id]" value="{{ $kr['id'] ?? '' }}">
-                                <div class="individual-name-fields" style="@if($kr['type'] != 'individual') display: none; @endif">
+                                <div class="individual-name-fields" style="@if($kr['type'] != 'Individual') display: none; @endif">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label class="form-label">First Name</label>
@@ -231,7 +231,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="entity-name-field" style="@if($kr['type'] == 'individual') display: none; @endif">
+                                <div class="entity-name-field" style="@if($kr['type'] == 'Individual') display: none; @endif">
                                     <label class="form-label">Name</label>
                                     <input type="text" class="form-control" name="advisor[{{ $loop->iteration }}][name]" value="{{ $kr['name'] ?? '' }}">
                                 </div>

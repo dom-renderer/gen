@@ -178,7 +178,7 @@
                     <th>Frequency</th>
                     <th>Amount</th>
                     <th>Rate</th>
-                    @forelse (\App\Models\PolicyIntroducer::with('intro', fn ($builder) => $builder->withTrashed())->where('policy_id', $policy_id)->get() as $row)
+                    @forelse (\App\Models\PolicyIntroducer::whereHas('intro', fn ($builder) => $builder->withTrashed())->where('policy_id', $policy_id)->get() as $row)
                         <th>
                             {{ $row->intro->type == 'individual' ? ($row->intro->name . ' ' . $row->intro->middle_name . ' ' . $row->intro->last_name) : ($row->intro->name) }} <br/>
                             (Introducer {{ $loop->iteration }})

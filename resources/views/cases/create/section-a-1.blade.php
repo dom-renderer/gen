@@ -94,8 +94,8 @@
                 <input type="email" class="form-control contact_person_email" name="contact_person_email[0]" placeholder="Email" value="">
             </div>
             <div class="col-md-3 col-xxl-2 col-xl-4 col-lg-4 mb-3">
-                <input type="hidden" class="contact_person_phone_number_dial_code sa1edcp1_pn" id="contact_person_phone_number_dial_code_0" name="contact_person_phone_number_dial_code[0]" value="">
-                <input type="tel" class="form-control contact_person_phone_number sa1edcp1_dc" name="contact_person_phone_number[0]" id="contact_person_phone_number" value="">
+                <input type="hidden" class="contact_person_phone_number_dial_code sa1edcp1_dc" id="contact_person_phone_number_dial_code_0" name="contact_person_phone_number_dial_code[0]" value="">
+                <input type="tel" class="form-control contact_person_phone_number sa1edcp1_pn" name="contact_person_phone_number[0]" id="contact_person_phone_number" value="">
             </div>
             <div class="col-md-1 col-xxl-2 col-xl-4 col-lg-4 butn-plus mb-3">
                 <button type="button" class="btn btn-success btn-sm s1ss1contperadd text-white"> + </button>
