@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'SourceSansProRegular';
+    src: url('SourceSansProRegular.eot');
+    src: url('SourceSansProRegular.eot') format('embedded-opentype'),
+         url('SourceSansProRegular.woff2') format('woff2'),
+         url('SourceSansProRegular.woff') format('woff'),
+         url('SourceSansProRegular.ttf') format('truetype'),
+         url('SourceSansProRegular.svg#SourceSansProRegular') format('svg');
+}
+
+
+@font-face {
+    font-family: 'SourceSansProSemibold';
+    src: url('SourceSansProSemibold.eot');
+    src: url('SourceSansProSemibold.eot') format('embedded-opentype'),
+         url('SourceSansProSemibold.woff2') format('woff2'),
+         url('SourceSansProSemibold.woff') format('woff'),
+         url('SourceSansProSemibold.ttf') format('truetype'),
+         url('SourceSansProSemibold.svg#SourceSansProSemibold') format('svg');
+}
+
+
+@font-face {
+    font-family: 'SourceSansProBold';
+    src: url('SourceSansProBold.eot');
+    src: url('SourceSansProBold.eot') format('embedded-opentype'),
+         url('SourceSansProBold.woff2') format('woff2'),
+         url('SourceSansProBold.woff') format('woff'),
+         url('SourceSansProBold.ttf') format('truetype'),
+         url('SourceSansProBold.svg#SourceSansProBold') format('svg');
+}
+
+@font-face {
+    font-family: 'Inter_24ptRegular';
+    src: url('Inter_24ptRegular.eot');
+    src: url('Inter_24ptRegular.eot') format('embedded-opentype'),
+         url('Inter_24ptRegular.woff2') format('woff2'),
+         url('Inter_24ptRegular.woff') format('woff'),
+         url('Inter_24ptRegular.ttf') format('truetype'),
+         url('Inter_24ptRegular.svg#Inter_24ptRegular') format('svg');
+}
+
