@@ -519,7 +519,7 @@ $isInMenu = function ($menuKey) use ($menuMap, $currentSection) {
                 @include('cases.create.section-h-1', ['h1Data' => $h1Data])
             </div>
             <div class="case-section {{ $currentSection === 'section-h-2' ? '' : 'd-none' }}" id="section-h-2">
-                @include('cases.create.section-h-2', ['h2Data' => $h1Data])
+                @include('cases.create.section-h-2', ['h2Data' => $h1Data,'policy_id' => $policy->id])
             </div>
             </div>
         </div>

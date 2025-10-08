@@ -1016,7 +1016,7 @@ $(document).ready(function() {
                 Swal.fire('Error', 'File size must be less than 10 MB', 'error');
                 return;
             }
-
+            
             let formData = new FormData();
             formData.append('file', file);
             formData.append('doc_id', currentUpload.docId);
@@ -1029,7 +1029,7 @@ $(document).ready(function() {
                 formData.append('expiry_date', $('#kyc-modal-expiry').val() || '');
             }
             formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
-
+            
             $.ajax({
                 url: "{{ route('upload-document') }}",
                 type: 'POST',
@@ -1266,7 +1266,7 @@ $(document).ready(function() {
             let viewBtn = $('#view\\[' + recordId + '\\]\\[' + docId + '\\]');
             let chckBox = $('#doc-' + recordId + '-' + docId);
             let dtType = fileInput.data('type');
-
+            
             if (!file) return;
 
             if (file.size > 10 * 1024 * 1024) {

@@ -4,7 +4,9 @@
         $forms = \App\Models\DownloadableDocument::orderBy('ordering')->get();
         $uploadedByFormId = collect();
         if ($forms->count() > 0) {
-            $uploadedByFormId = \App\Models\UploadableDocument::whereIn('downloadable_document_id', $forms->pluck('id'))->get()->keyBy('downloadable_document_id');
+            $uploadedByFormId = \App\Models\UploadableDocument::whereIn('downloadable_document_id', $forms->pluck('id'))
+            ->where('policy_id', $policy_id)
+            ->get()->keyBy('downloadable_document_id');
         }
 
     @endphp

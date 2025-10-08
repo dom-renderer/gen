@@ -274,6 +274,8 @@ class CaseController extends Controller
                 $fFlags[] = !empty(trim((string) $eco->distribution_strategy_during_policy_lifetime));
                 $fFlags[] = !empty(trim((string) $eco->distribution_strategy_post_death_payout));
                 $fFlags[] = !empty(trim((string) $eco->known_triggers_for_policy_exit_or_surrender));
+            } else {
+                $fFlags = [false, false, false, false, false, false, false];
             }
 
             $prem = PolicyPremium::where('policy_id', $policy->id)->first();
@@ -281,16 +283,22 @@ class CaseController extends Controller
                 $fFlags[] = ($prem->proposed_premium_amount ?? 0) > 0;
                 $fFlags[] = ($prem->final_premium_amount ?? 0) > 0;
                 $fFlags[] = !empty(trim((string) $prem->premium_frequency));
+            } else {
+                $fFlags = array_merge($fFlags, [false, false, false]);
             }
 
             $fsi = PolicyFeeSummaryInternal::where('policy_id', $policy->id)->first();
             if ($fsi) {
                 $fFlags[] = true;
+            } else {
+                $fFlags[] = false;
             }
 
             $fse = PolicyFeeSummaryExternal::where('policy_id', $policy->id)->first();
             if ($fse) {
                 $fFlags[] = true;
+            } else {
+                $fFlags[] = false;
             }
 
             $ongoing = PolicyOnGoing::where('policy_id', $policy->id)->first();
@@ -302,26 +310,29 @@ class CaseController extends Controller
                 $fFlags[] = !empty(trim((string) $ongoing->transfer_change));
                 $fFlags[] = !empty($ongoing->date_of_change_transfer);
                 $fFlags[] = !empty(trim((string) $ongoing->decision));
+            } else {
+                $fFlags = array_merge($fFlags, [false, false, false, false, false, false, false]);
             }
         } catch (\Throwable $e) {}
         $progressF = !empty($fFlags) ? Helper::getCompletion($fFlags) : 0;
 
         $gFlags = [];
         try {
-            $comms = PolicyCommunication::where('policy_id', $policy->id)->get();
+            $comms = UploadableDocument::where('policy_id', $policy->id)->get();
+            $falseFill = DownloadableDocument::count();
             foreach ($comms as $c) {
-                $gFlags[] = !empty($c->date);
-                $gFlags[] = !empty(trim((string) $c->type));
-                $gFlags[] = !empty(trim((string) $c->summary_of_discussion));
-                $gFlags[] = !empty(trim((string) $c->action_taken_or_next_step));
+                if (!empty($c->file)) {
+                    $gFlags[] = $c->file;
+                }
             }
 
-            $notes = PolicyCaseFileNote::where('policy_id', $policy->id)->get();
-            foreach ($notes as $n) {
-                $gFlags[] = !empty($n->date);
-                $gFlags[] = !empty(trim((string) $n->noted_by));
-                $gFlags[] = !empty(trim((string) $n->notes));
-            }
+            $truthFill = count($gFlags);
+
+        $gFlags = array_merge(
+            array_fill(0, $truthFill, true),
+            array_fill(0, $falseFill, false)
+        );
+
         } catch (\Throwable $e) {}
         $progressG = !empty($gFlags) ? Helper::getCompletion($gFlags) : 0;
 
@@ -768,8 +779,7 @@ class CaseController extends Controller
     }
 
     public function uploadDoc(Request $request) {
-
-        if ($request->has('dt_type')) {
+        if ($request->has('dt_type') && $request->dt_type != 'downloadable-document') {
 
             $request->validate([
                 'file' => 'required|file|max:10240',
@@ -844,7 +854,7 @@ class CaseController extends Controller
             $path = \Illuminate\Support\Facades\Storage::disk('public')->putFileAs($folder, $request->file, $filename);
             $shouldCheck = false;
 
-            $query = UploadableDocument::where('downloadable_document_id', $request->doc_id);
+            $query = UploadableDocument::where('downloadable_document_id', $request->doc_id)->where('policy_id', $request->policy_id);
 
             $hasExpiryDate = $request->has('has_expiry_date') ? (int)$request->input('has_expiry_date') : 1;
             $expiryDate = $hasExpiryDate ? ($request->input('expiry_date') ?: null) : null;
@@ -857,6 +867,7 @@ class CaseController extends Controller
                 ]);
             } else {
                 UploadableDocument::create([
+                    'policy_id' => $request->policy_id,
                     'downloadable_document_id' => $request->doc_id,
                     'file' => $filename,
                     'has_expiry_date' => $hasExpiryDate,

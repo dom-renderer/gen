@@ -1943,7 +1943,6 @@
             });
         });
 
-        // H-1: upload file for existing downloadable_documents row
         $(document).on('change', '.h1-upload-existing', function(){
             const file = this.files && this.files[0];
             if (!file) return;

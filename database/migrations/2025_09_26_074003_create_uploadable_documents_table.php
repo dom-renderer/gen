@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('uploadable_documents', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('downloadable_document_id')->nullable();
+            $table->unsignedBigInteger('policy_id')->nullable();
             $table->string('file')->nullable();
             $table->boolean('has_expiry_date')->default(false);
             $table->dateTime('expiry_date')->nullable();

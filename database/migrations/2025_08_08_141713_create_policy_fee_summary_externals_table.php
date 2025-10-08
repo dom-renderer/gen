@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->string('frequency')->nullable();
             $table->string('amount')->default(0);
+            $table->string('rate')->default(0);
             $table->text('recipient')->nullable();
             $table->text('notes')->nullable();
             $table->unsignedBigInteger('added_by')->nullable();
